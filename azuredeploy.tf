@@ -19,9 +19,7 @@ resource "azurerm_subnet" "region1-vnet1-snet1" {
   resource_group_name  = azurerm_resource_group.rg1.name
   virtual_network_name = azurerm_virtual_network.region1-vnet1-hub1.name
   address_prefixes     = [var.region1-vnet1-snet1-range]
-  tags = {
-      Environment = var.environment_tag
-  }
+
 }
 #Lab NSG
 resource "azurerm_network_security_group" "region1-nsg" {
@@ -71,18 +69,14 @@ resource "azurerm_network_interface" "region1-vm01-nic" {
 #Create VM
 resource "azurerm_windows_virtual_machine" "region1-dc01-vm" {
   name                = "region1-dc01-vm"
-  depends_on          = [azurerm_key_vault.kv1]
   resource_group_name = azurerm_resource_group.rg1.name
   location            = var.loc1
   size                = var.vmsize
   admin_username      = var.adminusername
   admin_password      = var.adminpassword
   network_interface_ids = [
-    azurerm_network_interface.region1-dc01-nic.id,
+    azurerm_network_interface.region1-vm01-nic.id,
   ]
-
-
-
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "StandardSSD_LRS"
