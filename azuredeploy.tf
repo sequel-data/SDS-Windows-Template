@@ -67,16 +67,14 @@ resource "azurerm_network_interface" "region1-vm01-nic" {
 
 }
 #Create VM
-resource "azurerm_windows_virtual_machine" "region1-vm01-vm" {
+resource "azurerm_virtual_machine" "region1-vm01-vm" {
   name                = "region1-vm01-vm"
   resource_group_name = azurerm_resource_group.rg1.name
   location            = var.loc1
   size                = var.vmsize
   admin_username      = var.adminusername
   admin_password      = var.adminpassword
-  network_interface_ids = [
-    azurerm_network_interface.region1-vm01-nic.id,
-  ]
+  network_interface_ids = [azurerm_network_interface.region1-vm01-nic.id,]
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "StandardSSD_LRS"
