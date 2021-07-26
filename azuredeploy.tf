@@ -75,9 +75,16 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
   admin_username      = var.adminusername
   admin_password      = var.adminpassword
   network_interface_ids = [azurerm_network_interface.region1-vm01-nic.id,]
+
   os_disk {
     caching              = "ReadWrite"
-    storage_account_type = "StandardSSD_LRS"
-    vhd_uri              = "https://cscustomimages.blob.core.windows.net/cscustomimages/WinSrv2019Std.vhd"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Windows"
+    offer     = "2019"
+    sku       = "STD"
+    version   = "0.0.1"
   }
 }
