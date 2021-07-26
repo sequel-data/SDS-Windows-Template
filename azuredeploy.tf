@@ -82,19 +82,6 @@ resource "azurerm_network_interface" "region1-vm01-nic" {
     Environment = var.environment_tag
   }
 }
-#Create data disk for NTDS storage
-resource "azurerm_managed_disk" "region1-dc01-data" {
-  name                 = "region1-dc01-data"
-  location             = var.loc1
-  resource_group_name  = azurerm_resource_group.rg1.name
-  storage_account_type = "StandardSSD_LRS"
-  create_option        = "Empty"
-  disk_size_gb         = "5"
-
-  tags = {
-    Environment = var.environment_tag
-  }
-}
 #Create VM
 resource "azurerm_windows_virtual_machine" "region1-dc01-vm" {
   name                = "region1-dc01-vm"
