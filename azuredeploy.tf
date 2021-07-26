@@ -80,6 +80,6 @@ resource "azurerm_windows_virtual_machine" "region1-dc01-vm" {
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "StandardSSD_LRS"
-    blob_uri             = "https://cscustomimages.blob.core.windows.net/cscustomimages/WinSrv2019Std.vhd"
+    vhd_uri              = "https://cscustomimages.blob.core.windows.net/cscustomimages/WinSrv2019Std.vhd"
   }
 }
