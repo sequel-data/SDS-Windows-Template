@@ -67,7 +67,7 @@ resource "azurerm_network_interface" "region1-vm01-nic" {
 
 }
 #Create VM
-resource "azurerm_virtual_machine" "region1-vm01-vm" {
+resource "azurerm_windows_virtual_machine" "region1-vm01-vm" {
   name                = "region1-vm01-vm"
   resource_group_name = azurerm_resource_group.rg1.name
   location            = var.loc1
