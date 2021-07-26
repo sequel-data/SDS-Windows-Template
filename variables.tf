@@ -6,10 +6,6 @@ variable "azure-rg-1" {
   type        = string
   description = "resource group 1"
 }
-variable "azure-rg-2" {
-  description = "resource group 2"
-  type        = string
-}
 variable "loc1" {
   description = "The location for this Lab environment"
   type        = string
