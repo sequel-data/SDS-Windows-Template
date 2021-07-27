@@ -71,20 +71,19 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
   location            = var.loc1
   vm_size             = var.vmsize
   network_interface_ids = [azurerm_network_interface.region1-vm01-nic.id]
-
-   source_image_reference {
+  source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
     sku       = "2019-Datacenter"
     version   = "latest"
   }
-    storage_os_disk {
+  storage_os_disk {
     name          = "osdisk"
     vhd_uri       = "https://cscustomimages.blob.core.windows.net/cscustomimages/WinSrv2019Std.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
-    os_profile {
+  os_profile {
       computer_name = azurerm_virtual_machine.region1-vm01-vm.name
       admin_username = var.adminusername
       admin_password = var.adminpassword
