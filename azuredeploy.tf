@@ -71,13 +71,7 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
   location            = var.loc1
   vm_size             = var.vmsize
   network_interface_ids = [azurerm_network_interface.region1-vm01-nic.id]
-  
-  source_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
-    sku       = "2019-Datacenter"
-    version   = "latest"
-  }
+
   storage_os_disk {
     name          = "${var.hostname}-osdisk"
     vhd_uri       = "https://cscustomimages.blob.core.windows.net/cscustomimages/WinSrv2019Std.vhd"
