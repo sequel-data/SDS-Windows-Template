@@ -88,3 +88,4 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
+}
