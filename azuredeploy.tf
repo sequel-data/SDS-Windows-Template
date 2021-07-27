@@ -63,15 +63,13 @@ resource "azurerm_network_interface" "region1-vm01-nic" {
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.region1-vm01-pip.id
   }
-
-
 }
 #Create VM
 resource "azurerm_virtual_machine" "region1-vm01-vm" {
   name                = "region1-vm01-vm"
   resource_group_name = azurerm_resource_group.rg1.name
   location            = var.loc1
-  size                = var.vmsize
+  vm_size             = var.vmsize
   admin_username      = var.adminusername
   admin_password      = var.adminpassword
   network_interface_ids = [azurerm_network_interface.region1-vm01-nic.id,]
@@ -88,4 +86,9 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
+    os_profile {
+      computer_name = azurerm_virtual_machine.region1-vm01-vm.name
+      admin_username = var.adminusername
+      admin_password = var.adminpassword
+ }
 }
