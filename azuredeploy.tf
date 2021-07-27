@@ -74,15 +74,18 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
 
   storage_os_disk {
     name          = "${var.hostname}-osdisk"
-    vhd_uri       = "https://cscustomimages.blob.core.windows.net/cscustomimages/WinSrv2019Std.vhd"
+    managed_disk_type = "Standard_LRS"
     os_type       = "Windows"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
-  os_profile {
-      computer_name =  var.hostname
-      admin_username = var.adminusername
-      admin_password = var.adminpassword
+  storage_image_reference {
+    id = "/subscriptions/022254bd-6008-4184-b56e-ab75a3f6dc3d/resourceGroups/RG-CustomImages/providers/Microsoft.Compute/galleries/SDS_Images/images/Windows2019STD"
+ } 
+ os_profile {
+    computer_name =  var.hostname
+    admin_username = var.adminusername
+    admin_password = var.adminpassword
  }
  os_profile_windows_config {
     provision_vm_agent = true
