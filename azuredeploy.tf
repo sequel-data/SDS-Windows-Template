@@ -71,8 +71,8 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
   location            = var.loc1
   vm_size             = var.vmsize
   network_interface_ids = [azurerm_network_interface.region1-vm01-nic.id,]
-  
-  source_image_reference {
+}
+   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
     sku       = "2019-Datacenter"
