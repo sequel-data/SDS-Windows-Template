@@ -90,6 +90,6 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
       admin_password = var.adminpassword
  }
  os_profile_windows_config {
-    disable_password_authentication = false
+    provision_vm_agent = true
  }
 }
