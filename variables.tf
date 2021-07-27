@@ -38,3 +38,7 @@ variable "adminpassword" {
   description = "administrator password for virtual machines"
   type        = string
 }
+variable "hostname' {
+  description = "hostname for virtual machines"
+  type        = string
+}

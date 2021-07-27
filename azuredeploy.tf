@@ -85,7 +85,7 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
     create_option = "FromImage"
   }
   os_profile {
-      computer_name = azurerm_virtual_machine.region1-vm01-vm.name
+      computer_name =  var.hostname
       admin_username = var.adminusername
       admin_password = var.adminpassword
  }
