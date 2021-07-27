@@ -67,7 +67,7 @@ resource "azurerm_network_interface" "region1-vm01-nic" {
 
 }
 #Create VM
-resource "azurerm_windows_virtual_machine" "region1-vm01-vm" {
+resource "azurerm_virtual_machine" "region1-vm01-vm" {
   name                = "region1-vm01-vm"
   resource_group_name = azurerm_resource_group.rg1.name
   location            = var.loc1
@@ -75,16 +75,16 @@ resource "azurerm_windows_virtual_machine" "region1-vm01-vm" {
   admin_username      = var.adminusername
   admin_password      = var.adminpassword
   network_interface_ids = [azurerm_network_interface.region1-vm01-nic.id,]
-
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-
+  
   source_image_reference {
-    publisher = "Windows"
-    offer     = "2019"
-    sku       = "STD"
-    version   = "0.0.1"
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2019-Datacenter"
+    version   = "latest"
   }
-}
+    storage_os_disk {
+    name          = "osdisk"
+    vhd_uri       = "https://cscustomimages.blob.core.windows.net/cscustomimages/WinSrv2019Std.vhd"
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+  }
