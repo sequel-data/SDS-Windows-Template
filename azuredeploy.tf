@@ -89,5 +89,6 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
  }
  os_profile_windows_config {
     provision_vm_agent = true
+    enable_automatic_upgrades = true
  }
 }
