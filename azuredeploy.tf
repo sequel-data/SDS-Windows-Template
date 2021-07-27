@@ -70,8 +70,8 @@ resource "azurerm_virtual_machine" "region1-vm01-vm" {
   resource_group_name = azurerm_resource_group.rg1.name
   location            = var.loc1
   vm_size             = var.vmsize
-  network_interface_ids = [azurerm_network_interface.region1-vm01-nic.id,]
-}
+  network_interface_ids = [azurerm_network_interface.region1-vm01-nic.id]
+
    source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
